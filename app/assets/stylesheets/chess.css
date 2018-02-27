@@ -1,0 +1,31 @@
+div#board {
+  position: relative;
+  float: left;
+  width: 778px;
+  height: 779px;
+  margin: auto;
+  background: url("board.png") no-repeat;
+}
+
+div#gamefield {
+  position: absolute;
+  width: 728px;
+  height: 728px;
+  margin-left: 32px;
+  margin-top:  31px;
+}
+
+.box {
+    float: left;
+    width: 90px;
+    height: 90px;
+}
+
+#div1, #div2 {
+    float: left;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
