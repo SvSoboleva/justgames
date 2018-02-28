@@ -12,6 +12,7 @@ gem 'rails', '~> 5.1.5'
 gem 'pg'
 gem 'faker'
 gem 'bootstrap', '~> 4.0.0.beta'
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
