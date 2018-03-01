@@ -14,12 +14,17 @@ function drop(ev) {
 }
 </script>
 
-<h1>Desk <%= @desk.id %></h1>
+<div class="row no-gutters">
+  <div class="col-4 justify-content-start"><h5>Desk <%= @desk.id %></h5></div>
+  <div class="col-4 justify-content-end"><%= link_to "Leave", root_path %></div>
+</div>
 
+<div class="row no-gutters">
+<div class="col-md-9">
 <div id="board">
 <div id="gamefield">
   <div id="a8" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <%= image_tag 'rb.png', draggable: true, ondragstart: "drag(event)", id: "rb1", width: "90", height: "90", class: "myImage" %> 
+    <%= image_tag 'rb.png', draggable: true, ondragstart: "drag(event)", id: "rb1", width: "90", height: "90" %> 
   </div>
   <div id="b8" class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
     <%= image_tag 'nb.png', draggable: true, ondragstart: "drag(event)", id: "nb1", width: "90", height: "90" %>
@@ -154,8 +159,20 @@ function drop(ev) {
     <%= image_tag 'rw.png', draggable: true, ondragstart: "drag(event)", id: "rw2", width: "90", height: "90" %> 
   </div>
 </div>  
-</div>    
+</div> 
+</div>
 
-<%= link_to "Leave", root_path %>
+<div class="col-md-3">
+  <div class="messages">
+    <div class="messages-inner" id="messages" data-desk-id="<%= @desk.id %>">
+      <%= render @desk.messages %>
+  </div>
+</div>
+
+<%= render 'messages/form' %>
+
+</div>
+
+</div>
 
 <p id="notice"><%= notice %></p>
