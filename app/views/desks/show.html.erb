@@ -5,12 +5,20 @@ function allowDrop(ev) {
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
+    console.log('drag ' + ev.target.id);
 }
 
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+    var elTo = document.getElementById(ev.target.id);
+    var elFrom = document.getElementById(data);
+    console.log('drop from ' + data + ' to ' + ev.target.id);
+    if (elTo.nodeName == 'DIV') {
+      ev.target.appendChild(elFrom);
+    } else {
+        elTo.parentElement.replaceChild(elFrom, elTo.parentElement.childNodes[0]);
+    }
 }
 </script>
 
