@@ -3,6 +3,7 @@ class Desk < ApplicationRecord
 
   belongs_to :user
   has_many :messages, dependent: :destroy
+  has_many :cages, dependent: :destroy
 
   def to_param
   	token
