@@ -9,17 +9,13 @@ class DesksController < ApplicationController
   end
 
   def show
+    @cages = Cage.where(desk: @desk)
   end
 
   def create
     @desk = current_user.desks.create!(game_name: params[:commit])
 
     if @desk.save
-      if @desk.game_name == 'chess' 
-        create_chessboard
-      else
-        create_checkerboard
-      end  
       redirect_to @desk, notice: 'Desk was successfully created.'
     else notice 'Desk was not successfully created.'  
     end  
@@ -33,13 +29,5 @@ class DesksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_desk
       @desk = Desk.find_by(token: params[:token])
-    end
-
-    def create_chessboard
-      
-    end
-
-    def create_chessboard
-      #todo
     end
 end
