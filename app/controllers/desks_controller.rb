@@ -1,5 +1,5 @@
 class DesksController < ApplicationController
-  before_action :set_desk, only: [:show]
+  before_action :set_desk, only: [:show, :destroy]
 
   # GET /desks
   # GET /desks.json
@@ -9,10 +9,11 @@ class DesksController < ApplicationController
   end
 
   def show
+    @cages = Cage.where(desk: @desk)
   end
 
   def create
-    @desk = current_user.desks.create!
+    @desk = current_user.desks.create!(game_name: params[:commit])
 
     if @desk.save
       redirect_to @desk, notice: 'Desk was successfully created.'
@@ -29,5 +30,4 @@ class DesksController < ApplicationController
     def set_desk
       @desk = Desk.find_by(token: params[:token])
     end
-
 end
