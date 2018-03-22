@@ -11,6 +11,18 @@ jQuery(document).on 'turbolinks:load', ->
       event.target.value = ""
       event.preventDefault()
 
+   $(document).on 'dragstart', (event)    ->
+     event.originalEvent.dataTransfer.setData("image", event.target.id);
+
+   $(document).on 'drop', (event)    ->
+     event.preventDefault();
+     elFrom = event.originalEvent.dataTransfer.getData("image")
+     elTo = event.target.id
+     console.log('in cable elFrom ' + elFrom + ' in cable elTo ' + elTo)
+
+     if elTo && elFrom
+       App.desk.movement(elTo, elFrom)
+
 createDeskChannel = (deskId) ->
   App.desk = App.cable.subscriptions.create {channel: "DeskChannel", deskId: deskId},
     connected: ->
@@ -21,7 +33,28 @@ createDeskChannel = (deskId) ->
 
     received: (data) ->
       console.log('Received message ' + data['message'])
-      $('#messages').append data['message']
+      console.log('Received elFrom ' + data['elFrom'] + ' elTo ' + data['elTo'])
+      if data['message']
+        $('#messages').append data['message']
+      
+      if data['elTo'] && data['elFrom']
+        elTo = document.getElementById(data['elTo'])
+        elFrom = document.getElementById(data['elFrom'])
+
+        if (elTo.nodeName == 'DIV') 
+          elTo.appendChild(elFrom)
+        else 
+          elToDiv = elTo.parentElement
+
+          while elToDiv.hasChildNodes()  
+            elToDiv.removeChild(elToDiv.firstChild)
+        
+          elToDiv.appendChild(elFrom);
 
     speak: (message) ->
       @perform 'speak', message: message
+
+    movement: (elTo, elFrom) ->
+      console.log('in coffe movement elFrom ' + elFrom + ' elTo ' + elTo)
+      @perform 'movement', elTo: elTo, elFrom: elFrom
+  
