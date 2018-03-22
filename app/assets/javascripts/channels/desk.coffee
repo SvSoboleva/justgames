@@ -40,11 +40,13 @@ createDeskChannel = (deskId) ->
       if data['elTo'] && data['elFrom']
         elTo = document.getElementById(data['elTo'])
         elFrom = document.getElementById(data['elFrom'])
+        console.log('elFrom ' + elFrom + ' elTo ' + elTo)
 
         if (elTo.nodeName == 'DIV') 
           elTo.appendChild(elFrom)
         else 
           elToDiv = elTo.parentElement
+          console.log('elToDiv ' + elToDiv)
 
           while elToDiv.hasChildNodes()  
             elToDiv.removeChild(elToDiv.firstChild)

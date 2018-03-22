@@ -6,14 +6,20 @@ class CageService
   end
 
   def perform
-    create_movement!
     broadcast_message
+    create_movement!
   end
 
   private
 
   def create_movement!
-   # @message ||= Message.create! body: @body, desk: @desk, nickname: @user.nickname
+    cage_from = Cage.find_by(desk: @desk, img_id: @el_from)
+    if cage_to = Cage.find_by(desk: @desk, img_id: @el_to)
+      cage_to.update(img_id: cage_from.img_id, img_name: cage_from.img_name)
+    else
+      Cage.create!(desk: @desk, board_id: @el_to, img_id: cage_from.img_id, img_name: cage_from.img_name)  
+    end         
+    cage_from.destroy
   end
 
   def broadcast_message
