@@ -22,4 +22,12 @@ class DeskChannel < ApplicationCable::Channel
        body: data['message'], user: current_user, desk: @desk
      ).perform
   end
+
+  def movement(data)
+    logger.info "Deskchannel, movement: #{data.inspect}"
+
+     CageService.new(
+       el_to: data['elTo'], el_from: data['elFrom'], desk: @desk
+     ).perform
+  end
 end
