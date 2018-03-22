@@ -26,12 +26,12 @@ function drop(ev) {
 </script>
 
 <div class="row no-gutters">
-  <div class="col-4 justify-content-start"><h5>Desk <%= @desk.id %></h5></div>
-  <div class="col-4 justify-content-end"><%= link_to "Back", root_path %></div>
+  <div class="col-1 justify-content-start"><h5>Desk <%= @desk.id %> |</h5></div>
+  <div class="col-1 justify-content-start"><%= link_to "Back", root_path %></div>
 </div>
 
 <div class="row no-gutters">
-<div class="col-md-9">
+<div class="col-lg-9 col-md-12 mb-4">
 <div id="board">
 <div id="gamefield">
   <% [8,7,6,5,4,3,2,1].each { |i|  %>
@@ -49,7 +49,7 @@ function drop(ev) {
 </div> 
 </div>
 
-<div class="col-md-3">
+<div class="col-lg-3 col-md-12">
   <div class="messages">
     <div class="messages-inner" id="messages" data-desk-id="<%= @desk.id %>">
       <%= render @desk.messages %>
