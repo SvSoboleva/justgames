@@ -1,33 +1,7 @@
 <script>
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-function drag(ev) {
-    ev.dataTransfer.setData("image", ev.target.id);
-    console.log('drag ' + ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("image");
-    var elTo = document.getElementById(ev.target.id);
-    var elFrom = document.getElementById(data);
-    if (elFrom.width != "90") { 
-      elFrom.width = "90";
-      elFrom.height = "90";
-    }
-    console.log('show elFrom ' + elFrom + elFrom.style.size + ' elTo ' + elTo)
-    if (elTo.nodeName == 'DIV') {
-      elTo.appendChild(elFrom);
-    } else {
-        elToDiv = elTo.parentElement;
-        while (elToDiv.hasChildNodes()) {  
-          elToDiv.removeChild(elToDiv.firstChild);
-        }
-        elToDiv.appendChild(elFrom);
-    }
-}
+  function allowDrop(ev) {
+      ev.preventDefault();
+  }
 </script>
 
 <div class="row no-gutters">
@@ -42,11 +16,10 @@ function drop(ev) {
         <% [8,7,6,5,4,3,2,1].each { |i|  %>
           <% %w(a b c d e f g h).each { |l| %>
             <% id_cage = "#{l}#{i}" %>
-            <div id=<%= id_cage %> class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div id=<%= id_cage %> class="box" ondragover="allowDrop(event)">
               <% @cage = @cages.find_by(board_id: id_cage) %>
               <% if @cage %>
-                <%= image_tag @cage.img_name, draggable: true, ondragstart: "drag(event)",
-                                              id: @cage.img_id, size: "90x90" %> 
+                <%= image_tag @cage.img_name, draggable: true, id: @cage.img_id, size: "90x90" %> 
               <% end %>
             </div>
           <% } %>
@@ -67,22 +40,16 @@ function drop(ev) {
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
           <%= image_tag "box.png", width: "60", height: "50" %>
         </button>
-        <div class="dropdown-menu">
+        <div class="dropdown-menu" id="beaten">
           <% if @beaten %>
             <% @beaten.each { |b| %>
-              <%= image_tag b.img_name, draggable: true, ondragstart: "drag(event)",
-                                                id: b.img_id, size: "30x30" %>
+              <%= image_tag b.img_name, draggable: true, id: b.img_id, size: "30x30" %>
             <% } %>
           <% end %>  
         </div>  
       </div>   
   </div>
-
-    
-
-  
 </div>
-
 
 
 <p id="notice"><%= notice %></p>
