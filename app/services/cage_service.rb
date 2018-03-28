@@ -15,6 +15,7 @@ class CageService
   def create_movement!
     cage_from = Cage.find_by(desk: @desk, img_id: @el_from)
     if cage_to = Cage.find_by(desk: @desk, img_id: @el_to)
+      Cage.create!(desk: @desk, board_id: "bn#{cage_to.img_id}", img_id: cage_to.img_id, img_name: cage_to.img_name)  
       cage_to.update(img_id: cage_from.img_id, img_name: cage_from.img_name)
     else
       Cage.create!(desk: @desk, board_id: @el_to, img_id: cage_from.img_id, img_name: cage_from.img_name)  

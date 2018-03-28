@@ -1,13 +1,13 @@
 .messages {
   overflow: none;
   position: relative;
-  height: 60vh;
+  height: 40vh;
   border: 1px solid #f0f0f0;
 
   &-inner {
     overflow: auto;
     position: absolute;
-    max-height: 60vh;
+    max-height: 40vh;
     left: 0;
     right: 0;
     bottom: 0;

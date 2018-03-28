@@ -4,12 +4,13 @@ class DesksController < ApplicationController
   # GET /desks
   # GET /desks.json
   def index
-    @desks = Desk.all
+    @desks = Desk.where(user: current_user)
     @desk = Desk.new
   end
 
   def show
     @cages = Cage.where(desk: @desk)
+    @beaten = Cage.where("desk_id = :d AND board_id LIKE 'bn%'", d: @desk)
   end
 
   def create

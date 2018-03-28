@@ -13,6 +13,11 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("image");
     var elTo = document.getElementById(ev.target.id);
     var elFrom = document.getElementById(data);
+    if (elFrom.width != "90") { 
+      elFrom.width = "90";
+      elFrom.height = "90";
+    }
+    console.log('show elFrom ' + elFrom + elFrom.style.size + ' elTo ' + elTo)
     if (elTo.nodeName == 'DIV') {
       elTo.appendChild(elFrom);
     } else {
@@ -31,35 +36,53 @@ function drop(ev) {
 </div>
 
 <div class="row no-gutters">
-<div class="col-lg-9 col-md-12 mb-4">
-<div id="board">
-<div id="gamefield">
-  <% [8,7,6,5,4,3,2,1].each { |i|  %>
-    <% %w(a b c d e f g h).each { |l| %>
-      <% id_cage = "#{l}#{i}" %>
-      <div id=<%= id_cage %> class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <% @cage = @cages.find_by(board_id: id_cage) %>
-        <% if @cage %>
-          <%= image_tag @cage.img_name, draggable: true, ondragstart: "drag(event)", id: @cage.img_id, width: "90", height: "90" %> 
-        <% end %>
-      </div>
-    <% } %>
-  <% } %>
-</div>  
-</div> 
-</div>
-
-<div class="col-lg-3 col-md-12">
-  <div class="messages">
-    <div class="messages-inner" id="messages" data-desk-id="<%= @desk.id %>">
-      <%= render @desk.messages %>
+  <div class="col-lg-9 col-md-12 mb-4">
+    <div id="board">
+      <div id="gamefield">
+        <% [8,7,6,5,4,3,2,1].each { |i|  %>
+          <% %w(a b c d e f g h).each { |l| %>
+            <% id_cage = "#{l}#{i}" %>
+            <div id=<%= id_cage %> class="box" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <% @cage = @cages.find_by(board_id: id_cage) %>
+              <% if @cage %>
+                <%= image_tag @cage.img_name, draggable: true, ondragstart: "drag(event)",
+                                              id: @cage.img_id, size: "90x90" %> 
+              <% end %>
+            </div>
+          <% } %>
+        <% } %>
+      </div>  
+    </div> 
   </div>
+
+  <div class="col-lg-3 col-md-12">
+      <div class="messages">
+        <div class="messages-inner" id="messages" data-desk-id="<%= @desk.id %>">
+          <%= render @desk.messages %>
+        </div>
+      </div>
+        <%= render 'messages/form' %>
+
+      <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          <%= image_tag "box.png", width: "60", height: "50" %>
+        </button>
+        <div class="dropdown-menu">
+          <% if @beaten %>
+            <% @beaten.each { |b| %>
+              <%= image_tag b.img_name, draggable: true, ondragstart: "drag(event)",
+                                                id: b.img_id, size: "30x30" %>
+            <% } %>
+          <% end %>  
+        </div>  
+      </div>   
+  </div>
+
+    
+
+  
 </div>
 
-<%= render 'messages/form' %>
 
-</div>
-
-</div>
 
 <p id="notice"><%= notice %></p>
