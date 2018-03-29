@@ -47,14 +47,16 @@ createDeskChannel = (deskId) ->
         console.log('elFrom ' + elFrom + ' elTo ' + elTo)
 
         if (elTo.nodeName == 'DIV') 
+          App.desk.speak("#{elFrom.parentElement.id} - #{elTo.id}")
           elTo.appendChild(elFrom)
         else 
           elToDiv = elTo.parentElement
+          App.desk.speak("#{elFrom.parentElement.id} - #{elToDiv.id}")
+
           elBeaten = document.getElementById('beaten')
           elTo.width = "30"
           elTo.height = "30"
           elBeaten.appendChild(elTo)
-          console.log('elToDiv ' + elToDiv)
 
           while elToDiv.hasChildNodes()  
             elToDiv.removeChild(elToDiv.firstChild)

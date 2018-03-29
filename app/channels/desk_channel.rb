@@ -6,13 +6,13 @@ class DeskChannel < ApplicationCable::Channel
     @desk = Desk.find(params[:deskId])
 
     stream_from "desk_channel_#{@desk.id}"
-    speak('message' => '*** joined the game ***')
+    #speak('message' => '*** joined the game ***')
   end
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
     logger.info 'Unsubscribed to DeskChannel'
-    speak('message' => '*** left the game ***')
+    #speak('message' => '*** left the game ***')
   end
 
   def speak(data)
