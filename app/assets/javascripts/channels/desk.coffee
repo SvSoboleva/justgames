@@ -18,7 +18,6 @@ jQuery(document).on 'turbolinks:load', ->
      event.preventDefault();
      elFrom = event.originalEvent.dataTransfer.getData("image")
      elTo = event.target.id
-     console.log('in cable elFrom ' + elFrom + ' in cable elTo ' + elTo)
 
      if elTo && elFrom
        App.desk.movement(elTo, elFrom)
@@ -44,15 +43,12 @@ createDeskChannel = (deskId) ->
           elFrom.width = "90"
           elFrom.height = "90"
 
-        console.log('elFrom ' + elFrom + ' elTo ' + elTo)
-
         if (elTo.nodeName == 'DIV') 
           App.desk.speak("#{elFrom.parentElement.id} - #{elTo.id}")
           elTo.appendChild(elFrom)
         else 
           elToDiv = elTo.parentElement
           App.desk.speak("#{elFrom.parentElement.id} - #{elToDiv.id}")
-
           elBeaten = document.getElementById('beaten')
           elTo.width = "30"
           elTo.height = "30"
