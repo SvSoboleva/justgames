@@ -53,10 +53,8 @@ createDeskChannel = (deskId) ->
           elTo.width = "30"
           elTo.height = "30"
           elBeaten.appendChild(elTo)
-
           while elToDiv.hasChildNodes()  
             elToDiv.removeChild(elToDiv.firstChild)
-        
           elToDiv.appendChild(elFrom);
 
     speak: (message) ->
