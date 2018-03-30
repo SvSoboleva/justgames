@@ -1,2 +1,8 @@
+<script>
+  function load_desk(token) {
+    location.href = "/desks/" + token;
+  }
+</script>
+
 <li><b>Desk #<%= desk.id %> - <%= desk.game_name %> created by <%= desk.user.nickname %></b> — 
-                                       <%= link_to 'Open', desk %></li>
+                                       <a onclick="load_desk(<%= "'#{desk.token}'" %>)" href="">Open</a> </li>

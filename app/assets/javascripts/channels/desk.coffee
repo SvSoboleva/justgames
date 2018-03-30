@@ -39,6 +39,7 @@ createDeskChannel = (deskId) ->
       if data['elTo'] && data['elFrom']
         elTo = document.getElementById(data['elTo'])
         elFrom = document.getElementById(data['elFrom'])
+
         if elFrom.width != "90" 
           elFrom.width = "90"
           elFrom.height = "90"
@@ -49,12 +50,15 @@ createDeskChannel = (deskId) ->
         else 
           elToDiv = elTo.parentElement
           App.desk.speak("#{elFrom.parentElement.id} - #{elToDiv.id}")
+
           elBeaten = document.getElementById('beaten')
           elTo.width = "30"
           elTo.height = "30"
           elBeaten.appendChild(elTo)
+
           while elToDiv.hasChildNodes()  
             elToDiv.removeChild(elToDiv.firstChild)
+
           elToDiv.appendChild(elFrom);
 
     speak: (message) ->
