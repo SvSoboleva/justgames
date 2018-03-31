@@ -21,6 +21,13 @@ jQuery(document).on 'turbolinks:load', ->
 
      if elTo && elFrom
        App.desk.movement(elTo, elFrom)
+       elT = document.getElementById(elTo)
+       elF = document.getElementById(elFrom)
+       if (elT.nodeName == 'DIV')
+         App.desk.speak("#{elF.parentElement.id} - #{elT.id}")
+       else
+         App.desk.speak("#{elF.parentElement.id} - #{elT.parentElement.id}")
+
 
 createDeskChannel = (deskId) ->
   App.desk = App.cable.subscriptions.create {channel: "DeskChannel", deskId: deskId},
@@ -45,11 +52,9 @@ createDeskChannel = (deskId) ->
           elFrom.height = "90"
 
         if (elTo.nodeName == 'DIV') 
-          App.desk.speak("#{elFrom.parentElement.id} - #{elTo.id}")
           elTo.appendChild(elFrom)
         else 
           elToDiv = elTo.parentElement
-          App.desk.speak("#{elFrom.parentElement.id} - #{elToDiv.id}")
 
           elBeaten = document.getElementById('beaten')
           elTo.width = "30"
@@ -63,6 +68,7 @@ createDeskChannel = (deskId) ->
 
     speak: (message) ->
       @perform 'speak', message: message
+      # $("#messages").scrollTop($("#messages")[0].scrollHeight)
 
     movement: (elTo, elFrom) ->
       console.log('in coffe movement elFrom ' + elFrom + ' elTo ' + elTo)
