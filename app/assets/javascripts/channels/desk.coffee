@@ -18,10 +18,16 @@ jQuery(document).on 'turbolinks:load', ->
      event.preventDefault();
      elFrom = event.originalEvent.dataTransfer.getData("image")
      elTo = event.target.id
-     console.log('in cable elFrom ' + elFrom + ' in cable elTo ' + elTo)
 
      if elTo && elFrom
        App.desk.movement(elTo, elFrom)
+       elT = document.getElementById(elTo)
+       elF = document.getElementById(elFrom)
+       if (elT.nodeName == 'DIV')
+         App.desk.speak("#{elF.parentElement.id} - #{elT.id}")
+       else
+         App.desk.speak("#{elF.parentElement.id} - #{elT.parentElement.id}")
+
 
 createDeskChannel = (deskId) ->
   App.desk = App.cable.subscriptions.create {channel: "DeskChannel", deskId: deskId},
@@ -40,29 +46,29 @@ createDeskChannel = (deskId) ->
       if data['elTo'] && data['elFrom']
         elTo = document.getElementById(data['elTo'])
         elFrom = document.getElementById(data['elFrom'])
+
         if elFrom.width != "90" 
           elFrom.width = "90"
           elFrom.height = "90"
-
-        console.log('elFrom ' + elFrom + ' elTo ' + elTo)
 
         if (elTo.nodeName == 'DIV') 
           elTo.appendChild(elFrom)
         else 
           elToDiv = elTo.parentElement
+
           elBeaten = document.getElementById('beaten')
           elTo.width = "30"
           elTo.height = "30"
           elBeaten.appendChild(elTo)
-          console.log('elToDiv ' + elToDiv)
 
           while elToDiv.hasChildNodes()  
             elToDiv.removeChild(elToDiv.firstChild)
-        
+
           elToDiv.appendChild(elFrom);
 
     speak: (message) ->
       @perform 'speak', message: message
+      # $("#messages").scrollTop($("#messages")[0].scrollHeight)
 
     movement: (elTo, elFrom) ->
       console.log('in coffe movement elFrom ' + elFrom + ' elTo ' + elTo)

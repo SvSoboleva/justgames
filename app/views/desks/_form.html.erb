@@ -1,6 +1,18 @@
 <%= form_for @desk do |form| %>
   <div class="actions">
-    <%= form.submit 'chess', class: 'btn btn-primary' %>
-    <%= form.submit 'checkers', class: 'btn btn-primary' %>
+    <div class="btn-group">
+     <%= form.submit 'chess', class: 'btn btn-primary' %>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary">checkers</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        </button>
+        <div class="dropdown-menu">
+          <%= form.submit 'classic', class: 'dropdown-item' %>
+          <%= form.submit 'corners', class: 'dropdown-item' %>
+        </div> 
+      </div> 
+    </div>
+      
   </div>
 <% end %>

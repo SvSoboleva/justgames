@@ -31,7 +31,7 @@
   <div class="col-lg-3 col-md-12">
       <div class="messages">
         <div class="messages-inner" id="messages" data-desk-id="<%= @desk.id %>">
-          <%= render @desk.messages %>
+          <%= render @desk.messages.reverse %>
         </div>
       </div>
         <%= render 'messages/form' %>
