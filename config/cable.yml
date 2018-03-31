@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:9680cc1335f807128ac53f90871b5d95@tarpon.redistogo.com:10375/
   channel_prefix: justgames_production
