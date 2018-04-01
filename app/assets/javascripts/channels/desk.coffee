@@ -19,7 +19,7 @@ jQuery(document).on 'turbolinks:load', ->
      elFrom = event.originalEvent.dataTransfer.getData("image")
      elTo = event.target.id
 
-     if elTo && elFrom
+     if elTo && elFrom && (elTo != elFrom)
        App.desk.movement(elTo, elFrom)
        elT = document.getElementById(elTo)
        elF = document.getElementById(elFrom)
@@ -42,6 +42,7 @@ createDeskChannel = (deskId) ->
       console.log('Received elFrom ' + data['elFrom'] + ' elTo ' + data['elTo'])
       if data['message']
         $('#messages').append data['message']
+        $("#messages").scrollTop($("#messages")[0].scrollHeight)
       
       if data['elTo'] && data['elFrom']
         elTo = document.getElementById(data['elTo'])
@@ -68,7 +69,6 @@ createDeskChannel = (deskId) ->
 
     speak: (message) ->
       @perform 'speak', message: message
-      # $("#messages").scrollTop($("#messages")[0].scrollHeight)
 
     movement: (elTo, elFrom) ->
       console.log('in coffe movement elFrom ' + elFrom + ' elTo ' + elTo)

@@ -38,9 +38,65 @@ module Initboards
           {board_id: 'h1', img_name: 'rw.png', img_id: 'rw2'}
         ]
       when 'classic'
-        []
+        [ {board_id: 'b8', img_name: 'checkb.png', img_id: 'cb1'},
+          {board_id: 'd8', img_name: 'checkb.png', img_id: 'cb2'},
+          {board_id: 'f8', img_name: 'checkb.png', img_id: 'cb3'},
+          {board_id: 'h8', img_name: 'checkb.png', img_id: 'cb4'},
+          {board_id: 'a7', img_name: 'checkb.png', img_id: 'cb5'},
+          {board_id: 'c7', img_name: 'checkb.png', img_id: 'cb6'},
+          {board_id: 'e7', img_name: 'checkb.png', img_id: 'cb7'},
+          {board_id: 'g7', img_name: 'checkb.png', img_id: 'cb8'},
+          {board_id: 'b6', img_name: 'checkb.png', img_id: 'cb9'},
+          {board_id: 'd6', img_name: 'checkb.png', img_id: 'cb10'},
+          {board_id: 'f6', img_name: 'checkb.png', img_id: 'cb11'},
+          {board_id: 'h6', img_name: 'checkb.png', img_id: 'cb12'},
+          {board_id: 'a3', img_name: 'checkw.png', img_id: 'cw1'},
+          {board_id: 'c3', img_name: 'checkw.png', img_id: 'cw2'},
+          {board_id: 'e3', img_name: 'checkw.png', img_id: 'cw3'},
+          {board_id: 'g3', img_name: 'checkw.png', img_id: 'cw4'},
+          {board_id: 'b2', img_name: 'checkw.png', img_id: 'cw5'},
+          {board_id: 'd2', img_name: 'checkw.png', img_id: 'cw6'},
+          {board_id: 'f2', img_name: 'checkw.png', img_id: 'cw7'},
+          {board_id: 'h2', img_name: 'checkw.png', img_id: 'cw8'},
+          {board_id: 'a1', img_name: 'checkw.png', img_id: 'cw9'},
+          {board_id: 'c1', img_name: 'checkw.png', img_id: 'cw10'},
+          {board_id: 'e1', img_name: 'checkw.png', img_id: 'cw11'},
+          {board_id: 'g1', img_name: 'checkw.png', img_id: 'cw12'},
+          {board_id: 'bndamb1', img_name: 'damb.png', img_id: 'damb1'},
+          {board_id: 'bndamb2', img_name: 'damb.png', img_id: 'damb2'},
+          {board_id: 'bndamb3', img_name: 'damb.png', img_id: 'damb3'},
+          {board_id: 'bndamb4', img_name: 'damb.png', img_id: 'damb4'},
+          {board_id: 'bndamw1', img_name: 'damw.png', img_id: 'damw1'},
+          {board_id: 'bndamw2', img_name: 'damw.png', img_id: 'damw2'},
+          {board_id: 'bndamw3', img_name: 'damw.png', img_id: 'damw3'},
+          {board_id: 'bndamw4', img_name: 'damw.png', img_id: 'damw4'}
+        ]
       when 'corners'
-        []
+        [ {board_id: 'a8', img_name: 'checkb.png', img_id: 'cb1'},
+          {board_id: 'b8', img_name: 'checkb.png', img_id: 'cb2'},
+          {board_id: 'c8', img_name: 'checkb.png', img_id: 'cb3'},
+          {board_id: 'a7', img_name: 'checkb.png', img_id: 'cb4'},
+          {board_id: 'b7', img_name: 'checkb.png', img_id: 'cb5'},
+          {board_id: 'c7', img_name: 'checkb.png', img_id: 'cb6'},
+          {board_id: 'a6', img_name: 'checkb.png', img_id: 'cb7'},
+          {board_id: 'b6', img_name: 'checkb.png', img_id: 'cb8'},
+          {board_id: 'c6', img_name: 'checkb.png', img_id: 'cb9'},
+          {board_id: 'a5', img_name: 'checkb.png', img_id: 'cb10'},
+          {board_id: 'b5', img_name: 'checkb.png', img_id: 'c11'},
+          {board_id: 'c5', img_name: 'checkb.png', img_id: 'cb12'},
+          {board_id: 'f4', img_name: 'checkw.png', img_id: 'cw1'},
+          {board_id: 'g4', img_name: 'checkw.png', img_id: 'cw2'},
+          {board_id: 'h4', img_name: 'checkw.png', img_id: 'cw3'},
+          {board_id: 'f3', img_name: 'checkw.png', img_id: 'cw4'},
+          {board_id: 'g3', img_name: 'checkw.png', img_id: 'cw5'},
+          {board_id: 'h3', img_name: 'checkw.png', img_id: 'cw6'},
+          {board_id: 'f2', img_name: 'checkw.png', img_id: 'cw7'},
+          {board_id: 'g2', img_name: 'checkw.png', img_id: 'cw8'},
+          {board_id: 'h2', img_name: 'checkw.png', img_id: 'cw9'},
+          {board_id: 'f1', img_name: 'checkw.png', img_id: 'cw10'},
+          {board_id: 'g1', img_name: 'checkw.png', img_id: 'cw11'},
+          {board_id: 'h1', img_name: 'checkw.png', img_id: 'cw12'}
+        ]
     end
   end
 end
