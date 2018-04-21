@@ -11,13 +11,10 @@ jQuery(document).on 'turbolinks:load', ->
       event.target.value = ""
       event.preventDefault()
 
-   $(document).on 'dragstart', (event)    ->
-     event.originalEvent.dataTransfer.setData("image", event.target.id);
+  $(document).on 'dragstart', (event)    ->
+     event.originalEvent.dataTransfer.setData("image", event.target.id)
 
-   $(document).on 'touchstart', (event)    ->
-     event.originalEvent.dataTransfer.setData("image", event.target.id);
-  
-   $(document).on 'drop', (event)    ->
+  $(document).on 'drop', (event)    ->
      event.preventDefault();
      elFrom = event.originalEvent.dataTransfer.getData("image")
      elTo = event.target.id
@@ -30,20 +27,6 @@ jQuery(document).on 'turbolinks:load', ->
          App.desk.speak("#{elF.parentElement.id} - #{elT.id}")
        else
          App.desk.speak("#{elF.parentElement.id} - #{elT.parentElement.id}")
-
-   $(document).on 'touchend', (event)    ->
-     event.preventDefault();
-     elFrom = event.originalEvent.dataTransfer.getData("image")
-     elTo = event.target.id
-
-     if elTo && elFrom && (elTo != elFrom)
-       App.desk.movement(elTo, elFrom)
-       elT = document.getElementById(elTo)
-       elF = document.getElementById(elFrom)
-       if (elT.nodeName == 'DIV')
-         App.desk.speak("#{elF.parentElement.id} - #{elT.id}")
-       else
-         App.desk.speak( "#{elF.parentElement.id} - #{elT.parentElement.id}")
 
 createDeskChannel = (deskId) ->
   App.desk = App.cable.subscriptions.create {channel: "DeskChannel", deskId: deskId},
