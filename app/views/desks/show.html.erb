@@ -19,7 +19,7 @@
             <div id=<%= id_cage %> class="box" ondragover="allowDrop(event)">
               <% @cage = @cages.find_by(board_id: id_cage) %>
               <% if @cage %>
-                <%= image_tag @cage.img_name, draggable: true, id: @cage.img_id, size: "90x90" %> 
+                <%= image_tag @cage.img_name, draggable: true, touchable: true, id: @cage.img_id, size: "90x90" %> 
               <% end %>
             </div>
           <% } %>
@@ -43,7 +43,7 @@
         <div class="dropdown-menu" id="beaten">
           <% if @beaten %>
             <% @beaten.each { |b| %>
-              <%= image_tag b.img_name, draggable: true, id: b.img_id, size: "30x30" %>
+              <%= image_tag b.img_name, draggable: true, touchable: true, id: b.img_id, size: "30x30" %>
             <% } %>
           <% end %>  
         </div>  
